@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CharacterController2D.cs" />
+     <Compile Include="Assets\EnemyJumpScript.cs" />
      <Compile Include="Assets\EnemyScript.cs" />
      <Compile Include="Assets\gameControlScript.cs" />
      <Compile Include="Assets\playerMovement.cs" />

@@ -27,6 +27,7 @@ public class EnemyScript : MonoBehaviour
     bool isSearching = false;
 
     float distToPlayer;
+    
 
 
 
