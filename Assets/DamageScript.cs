@@ -6,6 +6,7 @@ public class DamageScript : MonoBehaviour
 {
 
     public Animator animator;
+    
 
     public int maxHealth;
     int currentHealth;
@@ -44,11 +45,31 @@ public class DamageScript : MonoBehaviour
         animator.SetBool("IfDead", true);
         Debug.Log("Enemy Died!");
 
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<EnemyJumpScript>().enabled = false;
-        GetComponent<Animator>().enabled = false;
 
-        this.enabled = false;
+        if (GetComponent<EnemyJumpScript>() != null)
+        {
+            GetComponent<EnemyJumpScript>().enabled = false;
+        }
+        if (GetComponent<EnemyScript>() != null)
+        {
+            GetComponent<EnemyScript>().enabled = false;
+        }
+        
+        GetComponent<Rigidbody2D>().Sleep();
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
+
+       
+
+
+
+
+
+
+
+
+
+            this.enabled = false;
     
     }
 

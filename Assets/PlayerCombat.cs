@@ -10,9 +10,12 @@ public class PlayerCombat : MonoBehaviour
 
     public Transform attackPoint;
     public Transform attackPoint2;
+    public Transform attackPoint3;
 
     public float attackRange= .05f;
     public float attackRange2 = .05f;
+    public float attackRange3 = .05f;
+   
     public int attackDamage = 20;
 
     public LayerMask enemyLayers;
@@ -27,6 +30,10 @@ public class PlayerCombat : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.J))
         {
             Attack2();
+        }
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Attack3();
         }
     }
 
@@ -62,6 +69,21 @@ public class PlayerCombat : MonoBehaviour
 
     }
 
+    void Attack3()
+    {
+
+        animator.SetTrigger("Attack3");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            Debug.Log("We hit" + enemy.name);
+            enemy.GetComponent<DamageScript>().TakeDamage(attackDamage);
+
+        }
+
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (attackPoint == null)
@@ -70,6 +92,7 @@ public class PlayerCombat : MonoBehaviour
         }
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
         Gizmos.DrawWireSphere(attackPoint2.position, attackRange2);
+        Gizmos.DrawWireSphere(attackPoint3.position, attackRange3);
     }
 
 
