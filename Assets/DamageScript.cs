@@ -10,8 +10,10 @@ public class DamageScript : MonoBehaviour
 
     public int maxHealth;
     int currentHealth;
-    
-    
+    int hitCounter;
+
+
+    bool isDead = false;
     
     
     // Start is called before the first frame update
@@ -28,14 +30,16 @@ public class DamageScript : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-
-        animator.SetTrigger("IFTakenHit");
-
+        hitCounter++;
+        if (!isDead)
+        {
+            currentHealth -= (damage/2);
+            animator.SetTrigger("IFTakenHit");
+        }
         if (currentHealth <= 0)
         {
             Die();
-        
+            isDead = true;
         }
 
     }
@@ -43,7 +47,7 @@ public class DamageScript : MonoBehaviour
     void Die() 
     {
         animator.SetBool("IfDead", true);
-        Debug.Log("Enemy Died!");
+        Debug.Log("Enemy Died!"+"Enemy was hit "+ (hitCounter/2) );
 
 
         if (GetComponent<EnemyJumpScript>() != null)
@@ -56,16 +60,7 @@ public class DamageScript : MonoBehaviour
         }
         
         GetComponent<Rigidbody2D>().Sleep();
-        GetComponent<Collider2D>().enabled = false;
-        GetComponent<CircleCollider2D>().enabled = false;
-
        
-
-
-
-
-
-
 
 
 

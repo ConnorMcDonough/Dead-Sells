@@ -20,20 +20,25 @@ public class PlayerCombat : MonoBehaviour
 
     public LayerMask enemyLayers;
 
+    
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))
-        { 
-            Attack(); 
+        {
+            
+             Attack(); 
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Attack2();
+           
+             Attack2(); 
         }
         if(Input.GetKeyDown(KeyCode.L))
         {
-            Attack3();
+            
+             Attack3(); 
         }
     }
 
@@ -73,7 +78,7 @@ public class PlayerCombat : MonoBehaviour
     {
 
         animator.SetTrigger("Attack3");
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint3.position, attackRange, enemyLayers);
 
         foreach (Collider2D enemy in hitEnemies)
         {

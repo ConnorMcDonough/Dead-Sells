@@ -4018,7 +4018,7 @@ MonoBehaviour:
   attackPoint3: {fileID: 1785291104}
   attackRange: 0.98
   attackRange2: 0.74
-  attackRange3: 1.77
+  attackRange3: 0.9
   attackDamage: 20
   enemyLayers:
     serializedVersion: 2
@@ -4833,7 +4833,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1785291103}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 0.236, z: 0}
+  m_LocalPosition: {x: -0.268, y: 0.236, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1047507144}
