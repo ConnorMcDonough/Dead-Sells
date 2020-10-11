@@ -6,7 +6,7 @@ public class DamageScript : MonoBehaviour
 {
 
     public Animator animator;
-    
+    public AudioSource audioSource;
 
     public int maxHealth;
     int currentHealth;
@@ -34,7 +34,10 @@ public class DamageScript : MonoBehaviour
         if (!isDead)
         {
             currentHealth -= (damage/2);
+            if (audioSource != null)
+            { audioSource.Play(); }
             animator.SetTrigger("IFTakenHit");
+
         }
         if (currentHealth <= 0)
         {
