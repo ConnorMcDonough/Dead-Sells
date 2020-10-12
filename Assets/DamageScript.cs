@@ -53,9 +53,9 @@ public class DamageScript : MonoBehaviour
         Debug.Log("Enemy Died!"+"Enemy was hit "+ (hitCounter/2) );
 
 
-        if (GetComponent<EnemyJumpScript>() != null)
+        if (GetComponent<EnemyMoveScript>() != null)
         {
-            GetComponent<EnemyJumpScript>().enabled = false;
+            GetComponent<EnemyMoveScript>().enabled = false;
         }
         if (GetComponent<EnemyScript>() != null)
         {
