@@ -4,30 +4,41 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
+    //FOR TRACKING PLAYER
     [SerializeField] Transform player;
-
     [SerializeField] float agroRange;
-
-    [SerializeField] float moveSpeed;
-
+    // [SerializeField] float moveSpeed;
     [SerializeField] float stopDistance;
-
     [SerializeField] float scale = 1;
-
     [SerializeField] bool showDebugLine;
-
-    //[SerializeField] float stopDistance = 1;
-
     [SerializeField] Transform castPoint;
-
-    Rigidbody2D rb2d;
-
+    //Rigidbody2D rb2d;
     bool isFacingLeft;
     bool isAgro = false;
     bool isSearching = false;
-
     float distToPlayer;
-    
+    float castDist;
+
+    //FOR MOVEMENT
+    float dirX;
+    [SerializeField] float moveSpeed = 3f;
+    [SerializeField] private LayerMask whatIsJumpable;
+    [SerializeField] private LayerMask whatIsEdge;
+    [SerializeField] private LayerMask whatIsWall;
+    [SerializeField] private Transform wallCheck;
+    [SerializeField] private Transform jumpCheck;
+    [SerializeField] private Transform edgeCheck;
+    Rigidbody2D rb2d;
+    bool facingRight = true;
+    Vector3 localScale;
+    const float radius = .1f;
+
+
+
+    bool ifSeePlayer = false;
+
+    bool globalIsLeft=false;
+
 
 
 
@@ -35,30 +46,23 @@ public class EnemyScript : MonoBehaviour
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+        localScale = transform.localScale;
+        if (ifSeePlayer == false)
+        {
+            print("dasdas");
+            dirX = 1f;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
         distToPlayer = Vector2.Distance(transform.position, player.position);
-        /* NO LONGER NEEDED BUT I KEEP IT HERE BECAUSE I LOVE IT <3
-        //distance to player
-        float distToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (distToPlayer < agroRange && distToPlayer > stopDistance)
-        {
-            //code to chase player
-            ChasePlayer();
-        }
-        else
-        {
-            //stop chasing player
-            StopChasingPlayer();
-        }
-        */
 
         if (CanSeePlayer(agroRange))
         {
+            ifSeePlayer = true;
             isAgro = true;
             ChasePlayer();
         }
@@ -70,8 +74,7 @@ public class EnemyScript : MonoBehaviour
                 if (!isSearching)
                 {
                     isSearching = true;
-
-                    Invoke("StopChasingPlayer", 2);
+                    Invoke("StopChasingPlayer", 5);
 
                 }
 
@@ -89,17 +92,62 @@ public class EnemyScript : MonoBehaviour
         }
 
 
+
+    }
+
+    void FixedUpdate()
+    {
+        Physics2D.IgnoreLayerCollision(11, 11);
+
+        if (ifSeePlayer == false)
+        {
+
+
+
+
+            rb2d.velocity = new Vector2(dirX * moveSpeed, rb2d.velocity.y);
+
+            Collider2D[] collidersJump = Physics2D.OverlapCircleAll(jumpCheck.position, radius, whatIsJumpable);
+            for (int i = 0; i < collidersJump.Length; i++)
+            {
+                if (collidersJump[i].gameObject != gameObject)
+                {
+                    rb2d.AddForce(Vector2.up * 600f);
+                }
+            }
+
+            Collider2D[] collidersWall = Physics2D.OverlapCircleAll(wallCheck.position, radius, whatIsWall);
+            for (int i = 0; i < collidersWall.Length; i++)
+            {
+                if (collidersWall[i].gameObject != gameObject)
+                {
+                    moveChangeDir();
+                }
+            }
+
+            Collider2D[] collidersEdge = Physics2D.OverlapCircleAll(edgeCheck.position, radius, whatIsEdge);
+            for (int i = 0; i < collidersEdge.Length; i++)
+            {
+                if (collidersEdge[i].gameObject != gameObject)
+                {
+                    moveChangeDir();
+                }
+            }
+        }
+
+
     }
 
     bool CanSeePlayer(float distance)
     {
         bool val = false;
-        float castDist = distance;
+        
+        castDist = distance;
 
-        if (isFacingLeft == true)
+        if (globalIsLeft)
         {
             castDist = -distance;
-        }
+        } 
 
         Vector2 endPos = castPoint.position + Vector3.right * castDist;
         RaycastHit2D hit = Physics2D.Linecast(castPoint.position, endPos, 1 << LayerMask.NameToLayer("Player"));
@@ -134,32 +182,97 @@ public class EnemyScript : MonoBehaviour
 
     void ChasePlayer()
     {
-        print("Trans: " + transform.position.x);
-        print("play: " + player.position.x);
-        print("play+stop: " + ((float)player.position.x + (float)stopDistance));
         if (transform.position.x < ((float)player.position.x - (float)stopDistance))
         {
             //move right
-            rb2d.velocity = new Vector2(moveSpeed, 0);
-            transform.localScale = new Vector2(scale, scale);
+            print("right");
+            Collider2D[] collidersJump = Physics2D.OverlapCircleAll(jumpCheck.position, radius, whatIsJumpable);
+            for (int i = 0; i < collidersJump.Length; i++)
+            {
+                if (collidersJump[i].gameObject != gameObject)
+                {
+                    rb2d.AddForce(Vector2.up * 600f);
+                }
+            }
             isFacingLeft = false;
+            globalIsLeft = false;
+            moveChangeDir();
         }
         else if (transform.position.x > ((float)player.position.x + (float)stopDistance))
         {
             //move left
-            rb2d.velocity = new Vector2(-moveSpeed, 0);
-            transform.localScale = new Vector2(-scale, scale);
+            print("left");
+            Collider2D[] collidersJump = Physics2D.OverlapCircleAll(jumpCheck.position, radius, whatIsJumpable);
+            for (int i = 0; i < collidersJump.Length; i++)
+            {
+                if (collidersJump[i].gameObject != gameObject)
+                {
+                    rb2d.AddForce(Vector2.up * 600f);
+                }
+            }
             isFacingLeft = true;
-
-
+            globalIsLeft = true;
+            moveChangeDir();
         }
     }
 
     void StopChasingPlayer()
     {
+        if (ifSeePlayer = true)
+        {
+            //dirX = 0f;
+        }
+        ifSeePlayer = false;
         isAgro = false;
         isSearching = false;
-        rb2d.velocity = new Vector2(0, 0);
+        //rb2d.velocity = new Vector2(0, 0);
+    }
+
+    public void moveChangeDir()
+    {
+        print("ifSeePlayer: "+ifSeePlayer);
+        if (ifSeePlayer == false)
+        {
+            facingRight = !facingRight;
+
+            if (facingRight)//RIGHT
+            {
+                dirX = 1f;
+                globalIsLeft = false;
+            }
+            else if (!facingRight)//LEFT
+            {
+                dirX = -1f;
+
+                globalIsLeft = true;
+            }
+            rb2d.velocity = new Vector2(dirX * moveSpeed, rb2d.velocity.y);
+            if (((facingRight) && (localScale.x < 0) || ((!facingRight) && (localScale.x > 0))))
+            {
+                localScale.x *= -1;
+            }
+            transform.localScale = localScale;
+        }
+        else if(ifSeePlayer == true) {
+            
+            if (!isFacingLeft)//RIGHT
+            {
+                dirX = 1f;
+                globalIsLeft = false;
+            }
+            else if (isFacingLeft)//LEFT
+            {
+                dirX = -1f;
+                globalIsLeft = true;
+            }
+            rb2d.velocity = new Vector2(dirX * moveSpeed, rb2d.velocity.y);
+            if (((!isFacingLeft) && (localScale.x < 0) || ((isFacingLeft) && (localScale.x > 0))))
+            {
+                localScale.x *= -1;
+            }
+            transform.localScale = localScale;
+        }
+
     }
 
 

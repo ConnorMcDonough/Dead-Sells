@@ -6,24 +6,16 @@ public class EnemyMoveScript : MonoBehaviour
 {
 
     float dirX;
-
     [SerializeField] float moveSpeed = 3f;
-
     [SerializeField] private LayerMask whatIsJumpable;
     [SerializeField] private LayerMask whatIsEdge;
     [SerializeField] private LayerMask whatIsWall;
     [SerializeField] private Transform wallCheck;
-
     [SerializeField] private Transform jumpCheck;
-
     [SerializeField] private Transform edgeCheck;
-
     Rigidbody2D rb2d;
-
     bool facingRight = true;
-
     Vector3 localScale;
-
     const float radius = .1f;
 
 
