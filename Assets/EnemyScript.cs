@@ -248,7 +248,7 @@ public class EnemyScript : MonoBehaviour
 
                 globalIsLeft = true;
             }
-            rb2d.velocity = new Vector2(dirX * moveSpeed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(dirX * (moveSpeed), rb2d.velocity.y);
             if (((facingRight) && (localScale.x < 0) || ((!facingRight) && (localScale.x > 0))))
             {
                 localScale.x *= -1;
@@ -267,7 +267,7 @@ public class EnemyScript : MonoBehaviour
                 dirX = -1f;
                 globalIsLeft = true;
             }
-            rb2d.velocity = new Vector2(dirX * moveSpeed, rb2d.velocity.y);
+            rb2d.velocity = new Vector2(dirX * (moveSpeed), rb2d.velocity.y);
             if (((!isFacingLeft) && (localScale.x < 0) || ((isFacingLeft) && (localScale.x > 0))))
             {
                 localScale.x *= -1;

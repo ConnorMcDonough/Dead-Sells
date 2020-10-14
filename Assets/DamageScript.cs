@@ -5,6 +5,8 @@ using UnityEngine;
 public class DamageScript : MonoBehaviour
 {
 
+
+    [SerializeField] Rigidbody2D rb2d;
     public Animator animator;
     public AudioSource audioSource;
 
@@ -14,8 +16,8 @@ public class DamageScript : MonoBehaviour
 
 
     bool isDead = false;
-    
-    
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +27,14 @@ public class DamageScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (rb2d.velocity.x != 0)
+        {
+            animator.SetBool("ifWalking", true);
+        }
+        else if (rb2d.velocity.x == 0)
+        {
+            animator.SetBool("ifWalking", false);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -33,7 +42,7 @@ public class DamageScript : MonoBehaviour
         hitCounter++;
         if (!isDead)
         {
-            currentHealth -= (damage/2);
+            currentHealth -= (damage / 2);
             if (audioSource != null)
             { audioSource.Play(); }
             animator.SetTrigger("IFTakenHit");
@@ -47,10 +56,10 @@ public class DamageScript : MonoBehaviour
 
     }
 
-    void Die() 
+    void Die()
     {
         animator.SetBool("IfDead", true);
-        Debug.Log("Enemy Died!"+"Enemy was hit "+ (hitCounter/2) );
+        Debug.Log("Enemy Died!" + "Enemy was hit " + (hitCounter / 2));
 
 
         if (GetComponent<EnemyMoveScript>() != null)
@@ -61,14 +70,14 @@ public class DamageScript : MonoBehaviour
         {
             GetComponent<EnemyScript>().enabled = false;
         }
-        
+
         GetComponent<Rigidbody2D>().Sleep();
-       
 
 
 
-            this.enabled = false;
-    
+
+        this.enabled = false;
+
     }
 
 
