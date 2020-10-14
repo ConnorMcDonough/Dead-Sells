@@ -39,6 +39,8 @@ public class EnemyScript : MonoBehaviour
 
     bool globalIsLeft=false;
 
+    float jumpMod = 240f;
+
 
 
 
@@ -112,7 +114,7 @@ public class EnemyScript : MonoBehaviour
             {
                 if (collidersJump[i].gameObject != gameObject)
                 {
-                    rb2d.AddForce(Vector2.up * 600f);
+                    rb2d.AddForce(Vector2.up * jumpMod);
                 }
             }
 
@@ -191,7 +193,7 @@ public class EnemyScript : MonoBehaviour
             {
                 if (collidersJump[i].gameObject != gameObject)
                 {
-                    rb2d.AddForce(Vector2.up * 600f);
+                    rb2d.AddForce(Vector2.up * jumpMod);
                 }
             }
             isFacingLeft = false;
@@ -207,7 +209,7 @@ public class EnemyScript : MonoBehaviour
             {
                 if (collidersJump[i].gameObject != gameObject)
                 {
-                    rb2d.AddForce(Vector2.up * 600f);
+                    rb2d.AddForce(Vector2.up * jumpMod);
                 }
             }
             isFacingLeft = true;
