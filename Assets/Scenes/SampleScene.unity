@@ -6443,7 +6443,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.10980393, g: 0.10980393, b: 0.10980393, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -6483,7 +6483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.01, y: 2.42, z: -10}
+  m_LocalPosition: {x: 66.35, y: 2.42, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -6706,8 +6706,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0078101, y: -0.020901}
-  m_SizeDelta: {x: 70, y: 70}
+  m_AnchoredPosition: {x: 0.0019836, y: 0.00022125}
+  m_SizeDelta: {x: 1211.004, y: 534.9995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &574810965
 MonoBehaviour:
@@ -6728,7 +6728,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300048, guid: 3db16a587f0873f4daa94096b659ed2f, type: 3}
-  m_Type: 3
+  m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 0
@@ -84231,7 +84231,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1964650954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.01, y: 2.42, z: -10}
+  m_LocalPosition: {x: 66.35, y: 2.42, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1458155348}
@@ -84654,7 +84654,7 @@ PrefabInstance:
     - target: {fileID: 7996083201640563485, guid: ee4727d80b8633745905a37797b3eeb3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.01
+      value: 66.35
       objectReference: {fileID: 0}
     - target: {fileID: 7996083201640563485, guid: ee4727d80b8633745905a37797b3eeb3,
         type: 3}
