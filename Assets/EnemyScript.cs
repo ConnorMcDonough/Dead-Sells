@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
 
     bool globalIsLeft=false;
 
-    float jumpMod = 240f;
+    float jumpMod = 200f;
 
 
 
