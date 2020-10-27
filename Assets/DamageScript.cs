@@ -70,6 +70,20 @@ public class DamageScript : MonoBehaviour
         {
             GetComponent<EnemyScript>().enabled = false;
         }
+        if (GetComponent<playerMovement>() != null)
+        {
+            GetComponent<playerMovement>().enabled = false;
+        }
+        if (GetComponent<PlayerCombat>() != null)
+        {
+            GetComponent<PlayerCombat>().enabled = false;
+        }
+        if (GetComponent<EnemyAttackScript>() != null)
+        {
+            GetComponent<EnemyAttackScript>().enabled = false;
+        }
+
+
 
         GetComponent<Rigidbody2D>().Sleep();
 

@@ -84,6 +84,7 @@
     <Compile Include="Assets\SampleScenes\Scripts\ParticleSceneControls.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\PlaceTargetWithMouse.cs" />
     <Compile Include="Assets\SampleScenes\Scripts\SlowMoButton.cs" />
+    <Compile Include="Assets\StartScene\StartMenu.cs" />
     <None Include="Assets\SampleScenes\Shaders\Skybox-Procedural.shader" />
     <Reference Include="Cinemachine">
       <HintPath>C:/Users/rando/Documents/GitHub/Dead-Sells/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
