@@ -7,6 +7,7 @@ public class DamageScript : MonoBehaviour
 
 
     [SerializeField] Rigidbody2D rb2d;
+    [SerializeField] 
     public Animator animator;
     public AudioSource audioSource;
 
@@ -14,8 +15,13 @@ public class DamageScript : MonoBehaviour
     int currentHealth;
     int hitCounter;
 
+    bool addDeathCounter =false;
+
 
     bool isDead = false;
+
+    
+    public HeadCounter headCounter;
 
 
     // Start is called before the first frame update
@@ -60,6 +66,11 @@ public class DamageScript : MonoBehaviour
     {
         animator.SetBool("IfDead", true);
         Debug.Log("Enemy Died!" + "Enemy was hit " + (hitCounter / 2));
+
+        if(addDeathCounter==false) {
+                headCounter.addHeadCount();
+                addDeathCounter=true;
+            }
 
 
         if (GetComponent<EnemyMoveScript>() != null)

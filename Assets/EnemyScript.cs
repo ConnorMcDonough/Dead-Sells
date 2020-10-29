@@ -51,7 +51,6 @@ public class EnemyScript : MonoBehaviour
         localScale = transform.localScale;
         if (ifSeePlayer == false)
         {
-            print("dasdas");
             dirX = 1f;
         }
 
@@ -187,7 +186,6 @@ public class EnemyScript : MonoBehaviour
         if (transform.position.x < ((float)player.position.x - (float)stopDistance))
         {
             //move right
-            print("right");
             Collider2D[] collidersJump = Physics2D.OverlapCircleAll(jumpCheck.position, radius, whatIsJumpable);
             for (int i = 0; i < collidersJump.Length; i++)
             {
@@ -203,7 +201,6 @@ public class EnemyScript : MonoBehaviour
         else if (transform.position.x > ((float)player.position.x + (float)stopDistance))
         {
             //move left
-            print("left");
             Collider2D[] collidersJump = Physics2D.OverlapCircleAll(jumpCheck.position, radius, whatIsJumpable);
             for (int i = 0; i < collidersJump.Length; i++)
             {
@@ -232,7 +229,6 @@ public class EnemyScript : MonoBehaviour
 
     public void moveChangeDir()
     {
-        print("ifSeePlayer: "+ifSeePlayer);
         if (ifSeePlayer == false)
         {
             facingRight = !facingRight;

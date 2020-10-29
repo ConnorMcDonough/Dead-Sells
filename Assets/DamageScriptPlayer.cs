@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DamageScriptPlayer : MonoBehaviour
 {
@@ -56,6 +57,7 @@ public class DamageScriptPlayer : MonoBehaviour
         {
             Die();
             isDead = true;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex) ;
         }
 
     }
