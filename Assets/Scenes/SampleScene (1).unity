@@ -52940,7 +52940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 0.75
-  attackDamage: 5
+  attackDamage: 100
   attackRate: 2
   attackPoint: {fileID: 239665258}
   target: {fileID: 1047507144}

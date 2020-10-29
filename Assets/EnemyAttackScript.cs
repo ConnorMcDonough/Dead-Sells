@@ -46,7 +46,7 @@ public class EnemyAttackScript : MonoBehaviour
         foreach (Collider2D player in hitEnemies)
         {
             Debug.Log("We hit" + player.name);
-            player.GetComponent<DamageScript>().TakeDamage(attackDamage);
+            player.GetComponent<DamageScriptPlayer>().TakeDamage(attackDamage);
 
 
         }
