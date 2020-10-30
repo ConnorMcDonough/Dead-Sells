@@ -10,11 +10,12 @@ public class DamageScriptPlayer : MonoBehaviour
     public HealthBar healthBar;
 
     [SerializeField] Rigidbody2D rb2d;
+
     public Animator animator;
     public AudioSource audioSource;
 
     public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
     int hitCounter;
 
 
@@ -39,6 +40,8 @@ public class DamageScriptPlayer : MonoBehaviour
         {
             animator.SetBool("ifWalking", false);
         }
+
+        
     }
 
     public void TakeDamage(int damage)
