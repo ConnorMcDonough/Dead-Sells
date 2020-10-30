@@ -6,6 +6,7 @@ public class HealthPickup : MonoBehaviour
 
     [SerializeField] private LayerMask whatIsPlayer;
     [SerializeField] private Transform HPCheck;
+    [SerializeField] private AudioSource sound;
 
     [SerializeField] private DamageScriptPlayer flutter;
 
@@ -16,9 +17,16 @@ public class HealthPickup : MonoBehaviour
         {
             if (collidersHP[i].gameObject != gameObject)
             {
-                flutter.currentHealth = 100;
-                healthBar.SetHealth(flutter.currentHealth);
-                Destroy(gameObject);
+                if (flutter.currentHealth < 100)
+                {
+                    sound.Play();
+                    flutter.currentHealth = 100;
+                    healthBar.SetHealth(flutter.currentHealth);
+                    Destroy(gameObject);
+
+                    
+
+                }   
             }
         }
     }
