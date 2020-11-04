@@ -16,5 +16,8 @@ public class HeadCounter : MonoBehaviour
         counter++;
         txt.text=": "+counter;
     }
-    
+
+    public int getHeadCount() {
+        return counter;
+    }
 }

@@ -6,9 +6,9 @@ public class PauseMenuScript : MonoBehaviour
 {
 
     [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private bool isPaused; 
-
-
+    [SerializeField] private bool isPaused;
+    [SerializeField]  private AudioSource playerSound;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class PauseMenuScript : MonoBehaviour
         }
         if (isPaused)
         {
-            ActivateMenu();
+           ActivateMenu();
         }
         else if (!isPaused)
         {
@@ -33,16 +33,19 @@ public class PauseMenuScript : MonoBehaviour
         
     }
 
+    public void PauseGame() {
+        Time.timeScale = 0;
+    }
     void ActivateMenu() 
     {
-        Time.timeScale = 0;
-      //  AudioListener.pause = true;
+        PauseGame();
+        playerSound.Pause();
         pauseMenuUI.SetActive(true);
     }
     public void DeactivateMenu()
     {
         Time.timeScale = 1;
-       // AudioListener.pause = false;
+        playerSound.Play();
         pauseMenuUI.SetActive(false);
         isPaused = false;
     }
